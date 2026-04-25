@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parth Bhargav — Aspiring Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fbf9f4;
+      --ink: #1a1a1a;
+      --ink-soft: #4a4a4a;
+      --muted: #8a8578;
+      --accent: #c8553d;
+      --accent-deep: #9d3d29;
+      --rule: #d8d2c4;
+      --highlight: #f3d77c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper texture using gradients */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(200, 85, 61, 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(157, 61, 41, 0.03) 0%, transparent 40%);
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HEADER */
+    header {
+      padding: 60px 0 30px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 50px;
+    }
+
+    .top-bar .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin-right: 10px;
+      vertical-align: middle;
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.85); }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: end;
+      padding-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      font-variation-settings: "opsz" 144;
+    }
+
+    h1 .first {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    h1 .last {
+      display: block;
+      font-weight: 800;
+    }
+
+    .tagline {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: stretch;
+      padding: 20px 0;
+      border-left: 1px solid var(--rule);
+      padding-left: 20px;
+    }
+
+    /* SECTION STYLING */
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .section-label .num {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 40px;
+      max-width: 800px;
+    }
+
+    h2 em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .about-grid p {
+      font-size: 17px;
+      color: var(--ink-soft);
+      line-height: 1.75;
+    }
+
+    .about-grid p + p {
+      margin-top: 20px;
+    }
+
+    .about-grid p::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4em;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+    }
+
+    .contact-item {
+      background: var(--paper);
+      padding: 28px 32px;
+      transition: background 0.3s ease;
+    }
+
+    .contact-item:hover {
+      background: var(--bg);
+    }
+
+    .contact-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .contact-item .value {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .contact-item a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .contact-item .placeholder {
+      color: var(--muted);
+      font-style: italic;
+      font-size: 16px;
+    }
+
+    /* SKILLS */
+    .skills-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+    }
+
+    .skill-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 16px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    .skill-tag:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .skill-tag.primary {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+
+    .skill-tag.primary:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* EDUCATION & EXPERIENCE */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 30px 0;
+    }
+
+    .timeline-item + .timeline-item {
+      border-top: 1px solid var(--rule);
+    }
+
+    .timeline-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 8px;
+    }
+
+    .timeline-meta .status {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px;
+      background: var(--highlight);
+      color: var(--ink);
+      border-radius: 3px;
+      font-size: 10px;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline-content .institution {
+      font-size: 15px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .timeline-content p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    /* BEYOND */
+    .beyond {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .beyond-card {
+      padding: 40px;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      transition: transform 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .beyond-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .beyond-card .icon {
+      font-family: 'Fraunces', serif;
+      font-size: 64px;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .beyond-card h4 {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .beyond-card p {
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 60px 0 80px;
+      text-align: center;
+    }
+
+    .footer-mark {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 24px;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+
+    .footer-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ANIMATION on load */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes reveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal:nth-child(1) { animation-delay: 0.1s; }
+    .reveal:nth-child(2) { animation-delay: 0.2s; }
+    .reveal:nth-child(3) { animation-delay: 0.3s; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      .hero { grid-template-columns: 1fr; }
+      .tagline {
+        writing-mode: horizontal-tb;
+        transform: none;
+        border-left: none;
+        border-top: 1px solid var(--rule);
+        padding: 15px 0 0;
+      }
+      .about-grid { grid-template-columns: 1fr; gap: 20px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 16px; }
+      .beyond { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header>
+      <div class="top-bar reveal">
+        <span><span class="dot"></span>Available for opportunities</span>
+        <span>Portfolio · 2026</span>
+      </div>
+
+      <div class="hero">
+        <h1 class="reveal">
+          <span class="first">Parth</span>
+          <span class="last">Bhargav.</span>
+        </h1>
+        <div class="tagline reveal">Data · Insight · Curiosity</div>
+      </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-label"><span class="num">01</span> About</div>
+      <h2>A detail-oriented analyst <em>finding stories</em> in numbers — with a background in biology and a love for puzzles.</h2>
+      <div class="about-grid">
+        <p>Hi! I'm Parth — a detail-oriented and data-driven aspiring Analyst with a background in Biology and a passion for solving real-world problems through data. The tools I use include Excel, Python (Pandas, NumPy, Matplotlib), SQL, and RStudio.</p>
+        <p>I have experience in academic research as well as projects in Data Analytics, Time Series Analysis, and Machine Learning. I am passionate about Biostatistics, and my ultimate goal is to give back to the medical community through data-driven insights.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label"><span class="num">02</span> Contact</div>
+      <h2>Let's <em>connect.</em></h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="label">Name</div>
+          <div class="value">Parth Bhargav</div>
+        </div>
+        <div class="contact-item">
+          <div class="label">Phone</div>
+          <div class="value placeholder">847-848-5388</div>
+        </div>
+        <div class="contact-item">
+          <div class="label">Email</div>
+          <div class="value placeholder">parthbhargav388@gmail.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="label">LinkedIn</div>
+          <div class="value">
+            <a href="https://www.linkedin.com/in/parthbhargav388" target="_blank" rel="noopener">linkedin.com/in/parthbhargav388 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-label"><span class="num">03</span> Toolkit</div>
+      <h2>Skills &amp; <em>competencies.</em></h2>
+      <div class="skills-cluster">
+        <span class="skill-tag primary">Python</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">Scikit-Learn</span>
+        <span class="skill-tag">XGBoost</span>
+        <span class="skill-tag primary">SQL</span>
+        <span class="skill-tag primary">Excel</span>
+        <span class="skill-tag">Tableau (Intro)</span>
+        <span class="skill-tag primary">R / RStudio</span>
+        <span class="skill-tag">Time Series Analysis</span>
+        <span class="skill-tag">Statistical Modeling</span>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Classification</span>
+        <span class="skill-tag">Regression</span>
+        <span class="skill-tag">Neural Networks</span>
+        <span class="skill-tag">Model Tuning</span>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="section-label"><span class="num">04</span> Education</div>
+      <h2>Where I <em>learned to think.</em></h2>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          University
+          <div class="status">Completed</div>
+        </div>
+        <div class="timeline-content">
+          <h3>BS, Statistics</h3>
+          <div class="institution">University of Illinois at Urbana-Champaign</div>
+          <p>Building rigorous foundations in statistical theory, probability, and computational methods — with hands-on coursework in machine learning, regression analysis, and data-driven modeling.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-label"><span class="num">05</span> Experience</div>
+      <h2>Putting theory <em>into practice.</em></h2>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          Current Role
+          <div class="status">Active</div>
+        </div>
+        <div class="timeline-content">
+          <h3>Bioacoustics Research</h3>
+          <div class="institution">University of Illinois at Urbana-Champaign</div>
+          <p>I currently work with my University to perform statistical research using quantitative ultrasound data to determine which biomarkers are best for predicting whether a pregnancy will result in a pre-term birth. During this research, I have built 100+ models spanning Linear, Logistic, and Quantile Regression — applying classroom studies to a real-world clinical application, which has been incredibly rewarding.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEYOND -->
+    <section id="beyond">
+      <div class="section-label"><span class="num">06</span> Beyond Work</div>
+      <h2>Off the <em>clock.</em></h2>
+      <div class="beyond">
+        <div class="beyond-card">
+          <div class="icon">40+</div>
+          <h4>Puzzle Collector</h4>
+          <p>I love collecting and completing 1,000-piece puzzles. There's something deeply satisfying about reconstructing order from scattered fragments — it's not unlike data work, really.</p>
+        </div>
+        <div class="beyond-card">
+          <div class="icon">♪</div>
+          <h4>Music Without Borders</h4>
+          <p>I enjoy exploring music in other languages — Spanish, Japanese, Arabic, and beyond. Sound has a way of crossing the borders that words sometimes can't.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-mark">— Parth Bhargav —</div>
+      <div class="footer-meta">Built with HTML &amp; CSS · 2026</div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
